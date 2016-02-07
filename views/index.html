@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Choose your accomodation</title>
+  </head>
+  <body>
+    <input id="url" placeholder="Put URL"/>
+    <button id="compute">Compute</button>
+	<a href="/coucou">Clique</a>
+    <script id="template" type="x-tmpl-mustache">
+      {{#actors}}
+        <div class="actor">
+          <span>{{who}}</span>
+          <span>{{type}}</span>
+          <span>{{amount}}</span>
+        </div>
+      {{/actors}}
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.2.1/mustache.min.js"></script>
+	<!--<script src="leboncoin.js"></script>
+	<script src="init.js"></script>-->
+	</body>
+</html>
