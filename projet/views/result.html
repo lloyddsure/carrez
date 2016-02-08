@@ -1,0 +1,180 @@
+<html>
+ 
+	<head>
+
+
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+		<meta name="description" content="">
+		<meta name="author" content="Virgil Voillot">
+		
+		
+		<title>{{title}}</title>
+		
+		<link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.indigo-pink.min.css">
+		<script src="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+		
+		<!--<link href="\bootstrap\css\bootstrap.css" rel="stylesheet">-->
+		<link href="/bootstrap/css/bootstrap.css" rel="stylesheet">
+		<link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link href="/bootstrap/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+		<link href="/bootstrap/css/offcanvas.css" rel="stylesheet">
+		<link href="/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+		<link href="/bootstrap/css/theme.css" rel="stylesheet">
+		<script src="js/ie-emulation-modes-warning.js"></script>
+		
+		
+		<link href="/materialize/css/materialize.css" rel="stylesheet">
+		<link href="/materialize/css/materialize.min.css" rel="stylesheet">
+		
+		<style>
+		body {
+			color:black;
+			background-image:url(https://wallpaperscraft.com/image/city_buildings_night_lights_sky_cars_traffic_59085_1920x1080.jpg);
+		}
+		
+		.row {
+		background : white;
+		opacity : 0.9;
+		}
+		
+		affiche_titre {
+			font-size : 40px;
+			color : olive;
+		}
+
+		affiche_prix {
+			font-size : 48px;
+		}
+		
+		IMG.image_affaire {
+			display: block;
+			margin-left: auto;
+			margin-right: auto 
+			}
+		</style>
+	
+	</head>
+ 
+ 
+	<body>
+	
+	<nav class="navbar navbar-inverse">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Comparateur</a>
+          </div>
+          <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="http://localhost:3000/">Home</a></li>
+              <li><a href="/about">About</a></li>
+              <li><a href="/contact">Contact</a></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Action</a></li>
+                  <li><a href="#">Another action</a></li>
+                  <li><a href="#">Something else here</a></li>
+                  <li role="separator" class="divider"></li>
+                  <li class="dropdown-header">Nav header</li>
+                  <li><a href="#">Separated link</a></li>
+                  <li><a href="#">One more separated link</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+
+	<div class="row">
+		<div class="col-md-4">
+			<div class="card">
+				<div class="card-image">
+					{{#each entries}}
+						<img src="{{image}}" width="600" height="600" class="img-thumbnail" alt="Generic placeholder thumbnail"/>
+						<span class="card-title">{{ville_titre}}</span>
+					{{/each}}
+				</div>
+				<div class="card-content">
+					{{#each entries}}
+						<p>{{type_de_bien}} à {{ville_titre}} ({{localisation.code_postal}}) de {{surface}} m² et {{nb_piece}} pièce(s) </p>
+					{{/each}}
+				</div>
+				<div class="card-action">
+					{{#each entries}}
+						<a href="{{url}}">Plus d'information !</a>
+					{{/each}}
+				</div>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<h1>Price Comparison!</h1>
+			{{#each entries}}
+				<affiche_titre>{{type_de_bien}} à {{ville_titre}} ({{localisation.code_postal}})</affiche_titre>
+			{{/each}}
+			</br></br></br>
+			{{#each entries}}
+				<p class="text-center"><affiche_prix>Prix : {{prix}} €</affiche_prix></p>
+			{{/each}}
+				<div id="affaire"></div>
+			</br></br>
+			<p class="text-center" id =estimation> </p>
+		</div>
+		<div class="col-md-2"></div>
+	</div>
+	  
+		<script language="javascript">
+				 image = document.createElement('img');
+                        image.setAttribute('class', 'image_affaire');
+                        image.innerHTML = '';
+						{{#each entries}}
+						document.getElementById('estimation').innerHTML = 'Estimation : '+ {{surface}}+' * '+ {{prix_m_carre}}+' €';
+						if({{prix}} > {{estimation}})
+						{
+							image.setAttribute('width', '140');
+							image.setAttribute('height', '100');
+							image.setAttribute('src', 'http://files.storeland.ru/web/upload/sitefiles/6/516/515085/thumbs-up-button.jpg');
+						}
+						else
+						{
+							image.setAttribute('width', '120');
+							image.setAttribute('height', '100');
+							image.setAttribute('src', 'http://blogs.stlawu.edu/chelseapriebe/files/2012/11/red-thumbs-down-md1.png');
+						}
+						{{/each}}
+				document.getElementById('affaire').appendChild(image);
+		</script>
+		
+	
+      <hr>
+
+      <footer>
+		<p>
+			<a href="/">Home</a> ~ <a href="/about">About Me</a>
+		</p>
+        <p>&copy; 2015 Company, Inc.</p>
+      </footer>
+	  
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.2.1/mustache.min.js"></script>
+	
+	<!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="js/ie10-viewport-bug-workaround.js"></script>
+    <script src="offcanvas.js"></script>
+	
+	</body>
+</html>
