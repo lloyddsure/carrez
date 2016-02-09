@@ -61,6 +61,7 @@ function home ()
 
 	io.sockets.on('connection', function (socket) {   
 		socket.on('message', function (message) {
+			i=0;
 			leboncoin(message,function(result){
 				if(result != null && i==0)
 				{
